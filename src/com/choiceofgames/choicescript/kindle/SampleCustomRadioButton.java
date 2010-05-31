@@ -7,7 +7,6 @@ import com.amazon.kindle.kindlet.KindletContext;
 import com.amazon.kindle.kindlet.ui.KLabel;
 public class SampleCustomRadioButton extends AbstractKindlet {    
 	public void create(KindletContext context){        
-		//Logger logger = Logger.getLogger(HelloWorld.class);
 		Container rootContainer = context.getRootContainer();
 		rootContainer.setLayout(new FlowLayout());
 		

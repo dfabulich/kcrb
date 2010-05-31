@@ -10,15 +10,22 @@ import org.apache.log4j.Logger;
 
 import com.amazon.kindle.kindlet.ui.KButton;
 
+/**
+ * Custom checkbox for use in Kindle KDK.
+ * @author dfabulich
+ *
+ */
 public class KCustomCheckbox extends KButton implements ActionListener {
 	
 	private boolean selected = false;
 	final KCustomCheckboxGroup group;
 
+	/** Is this box checked? */
 	public boolean isSelected() {
 		return selected;
 	}
 
+	/** Check/uncheck this box */
 	public void setSelected(boolean selected) {
 		if (this.selected == selected) return;
 		if (selected && group != null) group.setSelected(this);
@@ -28,11 +35,15 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 
 	private static final long serialVersionUID = 8105922331821759692L;
 	private static Logger logger = Logger.getLogger(SampleCustomRadioButton.class);
+	// Should these be configurable?  Probably.  Just steal the code if you want to tweak these numbers.
 	private static final int padding = 1, border = 2;
+	
+	/** Create a checkbox */
 	public KCustomCheckbox() {
 		this(null);
-		
 	}
+	
+	/** Create a radio button belonging to a group */
 	public KCustomCheckbox(KCustomCheckboxGroup group) {
 		this.group = group;
 		addActionListener(this);
@@ -45,53 +56,56 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 	public Dimension getMinimumSize() {
 		int d = getFontMetrics(getFont()).getMaxAscent();
 		d += (padding + border) * 2;
-		logger.info("declared minimum: " + d);
+		logger.debug("declared minimum: " + d);
 		return new Dimension(d, d);
 	}
 	
 	public void paint(Graphics g) {
-		logger.info("I'm painting");
+		logger.debug("I'm painting");
 		//super.paint(g);
-		 // Dynamically calculate size information
         Dimension size = getSize();
+        // Max Ascent ~ maximum height of a letter from the baseline
+        // We'll use maxAscent to size our checkbox
         int maxAscent = g.getFontMetrics().getMaxAscent();
-		int d = maxAscent - border;
-        // diameter
-        //int d = Math.min(size.width, size.height);
-        //d = Math.min(30, d);
-        //d = Math.max(20, d);
-        int x = padding + border;
+		int diameter = maxAscent - border;
+
+		int x = padding + border;
         int y = padding + border;
-        logger.info("size.width " + size.width);
-        logger.info("size.height " + size.height);
-        logger.info("x " + x);
-        logger.info("y " + y);
-        logger.info("d " + d);
+        logger.debug("size.width " + size.width);
+        logger.debug("size.height " + size.height);
+        logger.debug("x " + x);
+        logger.debug("y " + y);
+        logger.debug("d " + diameter);
 
         g.setColor(Color.black);
         if (group != null) {
-        	if (selected) g.fillOval(x, y, d, d);
-            g.drawOval(x, y, d, d);
-            logger.info("g.drawOval(x, y, d, d);" + x + "," + y + "," + d);
+        	// radio button
+        	if (selected) g.fillOval(x, y, diameter, diameter);
+            g.drawOval(x, y, diameter, diameter);
+            logger.debug("g.drawOval(x, y, d, d);" + x + "," + y + "," + diameter);
         } else {
+        	// checkbox
         	if (selected) {
         		// draw X
-        		g.drawLine(x, y, x+d, y+d);
-        		g.drawLine(x, y+d, x+d, y);
+        		g.drawLine(x, y, x+diameter, y+diameter);
+        		g.drawLine(x, y+diameter, x+diameter, y);
         	}
-            g.drawRect(x, y, d, d);
+            g.drawRect(x, y, diameter, diameter);
         }
         
         if (!isFocusOwner()) {
         	g.setColor(Color.white);
         }
         for (int i = 0; i < border; i++) {
-        	int rectWidth = d+padding*2+border*2-i*2;
-        	logger.info("g.drawRect(i, i, rectWidth, rectWidth);" + i + "," + rectWidth);
+        	// Draw the border as a sequence of self-contained rectangles
+        	// The first border is the full size, the next border is 1px smaller, and so on
+        	int rectWidth = diameter+padding*2+border*2-i*2;
+        	logger.debug("g.drawRect(i, i, rectWidth, rectWidth);" + i + "," + rectWidth);
         	g.drawRect(i, i, rectWidth, rectWidth);
         }
 	}
 
+	/** Select this box */
 	public void actionPerformed(ActionEvent e) {
 		setSelected(!selected);
 	}
