@@ -28,7 +28,7 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 
 	private static final long serialVersionUID = 8105922331821759692L;
 	private static Logger logger = Logger.getLogger(SampleCustomRadioButton.class);
-	private static final int padding = 2, border = 2;
+	private static final int padding = 1, border = 2;
 	public KCustomCheckbox() {
 		this(null);
 		
@@ -44,7 +44,7 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 	
 	public Dimension getMinimumSize() {
 		int d = getFontMetrics(getFont()).getMaxAscent();
-		d += (padding + border) * 2 + 2;
+		d += (padding + border) * 2;
 		logger.info("declared minimum: " + d);
 		return new Dimension(d, d);
 	}
@@ -55,7 +55,7 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 		 // Dynamically calculate size information
         Dimension size = getSize();
         int maxAscent = g.getFontMetrics().getMaxAscent();
-		int d = maxAscent;
+		int d = maxAscent - border;
         // diameter
         //int d = Math.min(size.width, size.height);
         //d = Math.min(30, d);
