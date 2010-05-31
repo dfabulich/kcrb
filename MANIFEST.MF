@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Main-Class: com.choiceofgames.choicescript.kindle.SampleCustomRadioButton
+Main-Class: com.choiceofgames.kindle.SampleCustomRadioButton
 Implementation-Version: 1.0
 Implementation-Vendor: Choice of Games
 Implementation-Title: Sample Custom Radio Button
-Implementation-URL: http://www.amazon.com/
+Implementation-URL: http://github.com/dfabulich/kcrb

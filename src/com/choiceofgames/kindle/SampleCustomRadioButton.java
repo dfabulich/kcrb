@@ -1,4 +1,4 @@
-package com.choiceofgames.choicescript.kindle;
+package com.choiceofgames.kindle;
 import java.awt.Container;
 import java.awt.FlowLayout;
 

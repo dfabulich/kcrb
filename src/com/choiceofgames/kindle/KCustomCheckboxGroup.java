@@ -1,4 +1,4 @@
-package com.choiceofgames.choicescript.kindle;
+package com.choiceofgames.kindle;
 
 /** 
  * This group binds together multiple radio buttons,
