@@ -3,31 +3,39 @@ package com.choiceofgames.choicescript.kindle;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import org.apache.log4j.Logger;
 
-import com.amazon.kindle.kindlet.ui.KComponent;
+import com.amazon.kindle.kindlet.ui.KButton;
 
-public class KCustomRadioButton extends KComponent implements FocusListener {
+public class KCustomRadioButton extends KButton implements ActionListener {
 	
 	private boolean selected = false;
+	final KCustomCheckboxGroup group;
 
 	public boolean isSelected() {
 		return selected;
 	}
 
 	public void setSelected(boolean selected) {
+		if (this.selected == selected) return;
+		if (selected && group != null) group.setSelected(this);
 		this.selected = selected;
+		repaint();
 	}
 
 	private static final long serialVersionUID = 8105922331821759692L;
 	private static Logger logger = Logger.getLogger(SampleCustomRadioButton.class);
 	private static final int padding = 2, border = 2;
 	public KCustomRadioButton() {
-		setFocusable(true);
-		addFocusListener(this);
+		this(null);
+		
+	}
+	public KCustomRadioButton(KCustomCheckboxGroup group) {
+		this.group = group;
+		addActionListener(this);
 	}
 	
 	public Dimension getPreferredSize() {
@@ -43,7 +51,7 @@ public class KCustomRadioButton extends KComponent implements FocusListener {
 	
 	public void paint(Graphics g) {
 		logger.info("I'm painting");
-		super.paint(g);
+		//super.paint(g);
 		 // Dynamically calculate size information
         Dimension size = getSize();
         int maxAscent = g.getFontMetrics().getMaxAscent();
@@ -76,12 +84,8 @@ public class KCustomRadioButton extends KComponent implements FocusListener {
         }
 	}
 
-	public void focusGained(FocusEvent arg0) {
-		repaint();
-	}
-
-	public void focusLost(FocusEvent arg0) {
-		repaint();
+	public void actionPerformed(ActionEvent e) {
+		setSelected(!selected);
 	}
 	
 	

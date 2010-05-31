@@ -11,27 +11,24 @@ public class SampleCustomRadioButton extends AbstractKindlet {
 		Container rootContainer = context.getRootContainer();
 		rootContainer.setLayout(new FlowLayout());
 		
-		KCustomRadioButton button = new KCustomRadioButton();
-		button.setSelected(true);
+		KCustomCheckboxGroup group = new KCustomCheckboxGroup();
+		
+		KCustomRadioButton button = new KCustomRadioButton(group);
 		rootContainer.add(button);
 		
-		button = new KCustomRadioButton();
-		button.setSelected(true);
+		button = new KCustomRadioButton(group);
 		rootContainer.add(button);
 		
-		button = new KCustomRadioButton();
-		button.setSelected(true);
+		button = new KCustomRadioButton(group);
 		rootContainer.add(button);
 		
-		button = new KCustomRadioButton();
-		button.setSelected(true);
+		button = new KCustomRadioButton(group);
 		rootContainer.add(button);
 		
-		button = new KCustomRadioButton();
-		button.setSelected(true);
+		button = new KCustomRadioButton(group);
 		rootContainer.add(button);
 		
-		rootContainer.add(new KCustomRadioButton());
+		rootContainer.add(new KCustomRadioButton(group));
 		
 		button.requestFocus();
 		rootContainer.add(new KLabel("Click this option! g f I"));
