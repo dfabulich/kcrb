@@ -13,25 +13,25 @@ public class SampleCustomRadioButton extends AbstractKindlet {
 		
 		KCustomCheckboxGroup group = new KCustomCheckboxGroup();
 		
-		KCustomRadioButton button = new KCustomRadioButton(group);
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		
+		group = null;
+		
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		rootContainer.add(new KCustomCheckbox(group));
+		
+		KCustomCheckbox button = new KCustomCheckbox(group);
 		rootContainer.add(button);
-		
-		button = new KCustomRadioButton(group);
-		rootContainer.add(button);
-		
-		button = new KCustomRadioButton(group);
-		rootContainer.add(button);
-		
-		button = new KCustomRadioButton(group);
-		rootContainer.add(button);
-		
-		button = new KCustomRadioButton(group);
-		rootContainer.add(button);
-		
-		rootContainer.add(new KCustomRadioButton(group));
-		
+				
 		button.requestFocus();
-		rootContainer.add(new KLabel("Click this option! g f I"));
+		rootContainer.add(new KLabel("fClick this option! g f I"));
 	}
 	
 }

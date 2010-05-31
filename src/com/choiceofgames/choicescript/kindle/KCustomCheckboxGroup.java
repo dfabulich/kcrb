@@ -2,17 +2,17 @@ package com.choiceofgames.choicescript.kindle;
 
 
 public class KCustomCheckboxGroup {
-	private KCustomRadioButton selected = null;
+	private KCustomCheckbox selected = null;
 
-	public KCustomRadioButton getSelected() {
+	public KCustomCheckbox getSelected() {
 		return selected;
 	}
 
-	public void setSelected(KCustomRadioButton box) {
+	public void setSelected(KCustomCheckbox box) {
 		if (box != null && box.group != this) {
 		    return;
 		}
-		KCustomRadioButton oldChoice = this.selected;
+		KCustomCheckbox oldChoice = this.selected;
 		this.selected = box;
 		if (oldChoice != null && oldChoice != box && oldChoice.group == this) {
 		    oldChoice.setSelected(false);

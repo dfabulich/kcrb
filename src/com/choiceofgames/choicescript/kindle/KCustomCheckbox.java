@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.amazon.kindle.kindlet.ui.KButton;
 
-public class KCustomRadioButton extends KButton implements ActionListener {
+public class KCustomCheckbox extends KButton implements ActionListener {
 	
 	private boolean selected = false;
 	final KCustomCheckboxGroup group;
@@ -29,11 +29,11 @@ public class KCustomRadioButton extends KButton implements ActionListener {
 	private static final long serialVersionUID = 8105922331821759692L;
 	private static Logger logger = Logger.getLogger(SampleCustomRadioButton.class);
 	private static final int padding = 2, border = 2;
-	public KCustomRadioButton() {
+	public KCustomCheckbox() {
 		this(null);
 		
 	}
-	public KCustomRadioButton(KCustomCheckboxGroup group) {
+	public KCustomCheckbox(KCustomCheckboxGroup group) {
 		this.group = group;
 		addActionListener(this);
 	}
@@ -68,11 +68,19 @@ public class KCustomRadioButton extends KButton implements ActionListener {
         logger.info("y " + y);
         logger.info("d " + d);
 
-        // draw circle (color already set to foreground)
         g.setColor(Color.black);
-        if (selected) g.fillOval(x, y, d, d);
-        g.drawOval(x, y, d, d);
-        logger.info("g.drawOval(x, y, d, d);" + x + "," + y + "," + d);
+        if (group != null) {
+        	if (selected) g.fillOval(x, y, d, d);
+            g.drawOval(x, y, d, d);
+            logger.info("g.drawOval(x, y, d, d);" + x + "," + y + "," + d);
+        } else {
+        	if (selected) {
+        		// draw X
+        		g.drawLine(x, y, x+d, y+d);
+        		g.drawLine(x, y+d, x+d, y);
+        	}
+            g.drawRect(x, y, d, d);
+        }
         
         if (!isFocusOwner()) {
         	g.setColor(Color.white);
