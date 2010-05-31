@@ -1,0 +1,9 @@
+Custom checkboxes and radio buttons for Kindle KDK active content.
+
+    KCustomCheckbox checkbox = new KCustomCheckbox();
+    rootContainer.add(checkbox);
+
+    KCustomCheckboxGroup group = new KCustomCheckboxGroup();
+    KCustomCheckbox radioButton = new KCustomCheckbox(group);
+    rootContainer.add(radioButton);
+
