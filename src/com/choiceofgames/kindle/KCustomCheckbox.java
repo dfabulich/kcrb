@@ -50,7 +50,7 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 	}
 
 	private static final long serialVersionUID = 8105922331821759692L;
-	private static Logger logger = Logger.getLogger(SampleCustomRadioButton.class);
+	private static Logger logger = Logger.getLogger(KCustomCheckbox.class);
 	// Should these be configurable?  Probably.  Just steal the code if you want to tweak these numbers.
 	private static final int padding = 1, border = 2;
 	
