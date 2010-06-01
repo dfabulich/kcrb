@@ -36,6 +36,10 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 	private boolean selected = false;
 	final KCustomCheckboxGroup group;
 
+	private boolean isRadioButton() {
+		return group != null;
+	}
+	
 	/** Is this box checked? */
 	public boolean isSelected() {
 		return selected;
@@ -94,8 +98,7 @@ public class KCustomCheckbox extends KButton implements ActionListener {
         logger.debug("d " + diameter);
 
         g.setColor(Color.black);
-        if (group != null) {
-        	// radio button
+        if (isRadioButton()) {
         	if (selected) g.fillOval(x, y, diameter, diameter);
             g.drawOval(x, y, diameter, diameter);
             logger.debug("g.drawOval(x, y, d, d);" + x + "," + y + "," + diameter);
@@ -123,6 +126,7 @@ public class KCustomCheckbox extends KButton implements ActionListener {
 
 	/** Select this box */
 	public void actionPerformed(ActionEvent e) {
+		if (isRadioButton() && selected) return; // can't deselect last radio button
 		setSelected(!selected);
 	}
 	
